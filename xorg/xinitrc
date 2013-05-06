@@ -1,4 +1,0 @@
-#!/bin/sh
-
-exec $HOME/.xmonad/xmonad.start
-

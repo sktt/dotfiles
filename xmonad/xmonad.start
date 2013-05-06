@@ -1,8 +1,0 @@
-#!/bin/bash
-eval $(gnome-keyring-daemon --start)
-export GNOME_KEYRING_SOCKET
-export GNOME_KEYRING_PID
-
-feh --bg-scale ~/.xmonad_background.jpg &
-exec ~/.dropbox-dist/dropboxd&
-xmonad

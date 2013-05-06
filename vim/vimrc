@@ -1,0 +1,45 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'scrooloose/nerdtree'
+Bundle 'ryu-blacknd/vim-nucolors'
+filetype plugin indent on
+syntax on
+
+" Better indents
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+set backupdir=~/.vim/backup,~/.vim/tmp
+set directory=~/.vim/backup,~/.vim/tmp
+
+" colorscheme
+color nucolors
+" set row numbers
+set number
+if has("autocmd")
+  au InsertEnter * set cul
+  au InsertLeave * set nocul 
+endif
+highlight LineNr ctermfg=darkgray ctermbg=none
+
+set hlsearch
+
+" Leader key timeout
+set timeoutlen=400
+set ttimeoutlen=400
+
+" Leader key mapping
+let mapleader = " "
+nnoremap <Space> <Nop>
+nnoremap <Leader>h :set hlsearch!<CR>
+nnoremap <Leader>nt :NERDTreeToggle<CR>
+
+" Exit insert mode mapping
+imap öö <Esc><Esc>

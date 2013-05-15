@@ -1,0 +1,14 @@
+#!/bin/sh
+xrdb -merge ~/.dotfiles/xorg/solarized/solarized
+xrdb -merge ~/.dotfiles/xorg/fonts
+xsetroot -solid "#002b36"
+xsetroot -cursor_name left_ptr
+feh --bg-scale ~/.xmonad_background.jpg &
+xset +fp /usr/share/fonts/local && xset fp rehash
+/usr/bin/keychain -Q -q --nogui ~/.ssh/id_ecdsa
+ [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
+[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
+urxvtd -q -f -o
+exec ~/.dropbox-dist/dropboxd &
+exec xmonad

@@ -21,6 +21,7 @@ myFocusedBorderColor = "#66cc77"
 myFocusFollowsMouse = False
 main = do
     xmproc <- spawnPipe "xmobar"
+    xmproc <- spawnPipe "/home/jnes/.cabal/bin/xmobar /home/jnes/.xmobarrc"
     xmonad $ defaultConfig {
         manageHook = manageDocks <+> manageHook defaultConfig,
         layoutHook = avoidStruts  $  layoutHook defaultConfig,

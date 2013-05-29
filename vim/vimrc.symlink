@@ -9,6 +9,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'ryu-blacknd/vim-nucolors'
 Bundle 'tpope/vim-pathogen'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'FredKSchott/CoVim'
 filetype plugin indent on
 syntax on
 
@@ -22,15 +23,10 @@ set backupdir=~/.vim/backup,~/.vim/tmp
 set directory=~/.vim/backup,~/.vim/tmp
 
 " colorscheme
+set background=dark
 colorscheme solarized
 " set row numbers
 set number
-"if has("autocmd")dd
-"  au InsertEnter * set cul
-"  au InsertLeave * set nocul 
-"endif
-"highlight LineNr ctermfg=darkgray ctermbg=none
-
 set hlsearch
 
 " Leader key timeout

@@ -4,6 +4,7 @@ import XMonad.Layout.Tabbed
 import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Util.EZConfig
 import System.IO
 
 
@@ -89,20 +90,29 @@ tabTheme = baseTheme
     , activeTextColor       = base00
     }
 
+myKeys =
+     -- XF86AudioMute
+    [ ((0 , 0x1008FF12), spawn "amixer -q set Master 0")
+    -- XF86AudioLowerVolume
+    , ((0 , 0x1008ff11), spawn "amixer -q set Master 1- unmute")
+    -- XF86AudioRaiseVolume
+    , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")
+    ]
+
 main = do
-    xmproc <- spawnPipe "xmobar"
     xmproc <- spawnPipe "/home/jnes/.cabal/bin/xmobar /home/jnes/.xmobarrc"
-    xmonad $ defaultConfig {
-        manageHook = manageDocks <+> manageHook defaultConfig,
-        layoutHook = myLayout,
-      	logHook = dynamicLogWithPP xmobarPP {
-		      ppOutput = hPutStrLn xmproc,
-		      ppTitle = xmobarColor "red" "" . shorten 60
-		    },
-	      terminal = myTerminal,
-	      modMask = myModMask,
-        borderWidth = myBorderWidth,
-        normalBorderColor = myNormalBorderColor,
-        focusedBorderColor = myFocusedBorderColor,
-        focusFollowsMouse = myFocusFollowsMouse
-      }
+    xmonad $ defaultConfig 
+        {  manageHook = manageDocks <+> manageHook defaultConfig
+        ,  layoutHook = myLayout
+      	,  logHook = dynamicLogWithPP xmobarPP 
+            {  ppOutput = hPutStrLn xmproc
+		    ,  ppTitle = xmobarColor red "" . shorten 60
+		    }
+        ,  terminal = myTerminal
+        ,  modMask = myModMask
+        ,  borderWidth = myBorderWidth
+        ,  normalBorderColor = myNormalBorderColor
+        ,  focusedBorderColor = myFocusedBorderColor
+        ,  focusFollowsMouse = myFocusFollowsMouse
+        } `additionalKeys` myKeys 
+      

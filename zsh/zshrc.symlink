@@ -34,13 +34,51 @@ plugins=(git debian nyan ruby extract)
 source $ZSH/oh-my-zsh.sh
 source ~/.gibo-completion.zsh
 
-alias plz=sudo
+# shortcut to this dotfiles path is $ZSH
+export DOTFILES=$HOME/.dotfiles
 
+# use .localrc for SUPER SECRET CRAP that you don't
+# want in your public, versioned repo.
+if [[ -a ~/.localrc ]]
+then
+  source ~/.localrc
+fi
+
+# all of our zsh files
+typeset -U config_files
+config_files=($DOTFILES/**/*.zsh)
+
+# load the path files
+for file in ${(M)config_files:#*/path.zsh}
+do
+  source $file
+done
+
+# load everything but the path and completion files
+for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
+do
+  source $file
+done
+
+# initialize autocomplete here, otherwise functions won't be loaded
+autoload -U compinit
+compinit
+
+# load every completion after autocomplete loads
+for file in ${(M)config_files:#*/completion.zsh}
+do
+  source $file
+done
+
+unset config_files
+alias plz=sudo
 TZ='Europe/Stockholm'; export TZ
 # Customize to your needs...
 unsetopt correct_all
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
 eval "$(rbenv init -)"
 PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B${PWD/#$HOME/~}/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '  
+# Start x on login
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+    exec ssh-agent startx
+    exec xinit -- /usr/bin/X -nolisten tcp vt7
+fi

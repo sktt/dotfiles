@@ -10,5 +10,5 @@ Urxvt*secondaryScroll:  true    # Enable Shift-PageUp/Down in screen
 URxvt*saveLines: 5000
 URxvt*termName: rxvt-unicode
 URxvt.perl-ext-common: default,matcher
-URxvt.urlLauncher: firefox
+URxvt.urlLauncher: google-chrome
 URxvt.matcher.button: 1

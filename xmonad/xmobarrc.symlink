@@ -13,5 +13,5 @@ Config { font = "xft:Inconsolata:size=12:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#93a1a1>%gmail%</fc>  %cpu%  %memory%  %wlan0%  %diskio%  %date%"
+       , template = "%StdinReader% }{ <fc=#93a1a1>%gmail%</fc>  %cpu%  %memory%  %wlan0%  %diskio% %xmo-battery%  %date%"
        }

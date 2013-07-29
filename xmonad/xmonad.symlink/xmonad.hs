@@ -64,7 +64,7 @@ myTheme = defaultTheme { activeColor = base03
                        , inactiveBorderColor = base02
                        , activeTextColor = base1
                        , inactiveTextColor = base00
-                       , fontName = "xft:DejaVu Sans Mono:regular:size=10"
+                       , fontName = "xft:Inconsolata:size=13"
                        , decoHeight = 24 }
 
 baseTheme :: Theme
@@ -94,11 +94,14 @@ myKeys =
      -- XF86AudioMute
     [ ((0 , 0x1008FF12), spawn "amixer -q set Master 0")
     -- XF86AudioLowerVolume
-    , ((0 , 0x1008ff11), spawn "amixer -q set Master 1- unmute")
+    , ((0 , 0x1008ff11), spawn "amixer -q set Master 10%- unmute && amixer -q set Headphone unmute && amixer -q set Speaker unmute")
     -- XF86AudioRaiseVolume
-    , ((0 , 0x1008ff13), spawn "amixer -q set Master 1+ unmute")
+    , ((0 , 0x1008ff13), spawn "amixer -q set Master 10%+ unmute && amixer -q set Headphone unmute && amixer -q set Speaker unmute")
     ]
-
+myKeysP = 
+    [ ("M-p", spawn "exec dmenu-dark -b")
+    , ("M-g", spawn "exec google-chrome")
+    ]
 main = do
     xmproc <- spawnPipe "/home/jnes/.cabal/bin/xmobar /home/jnes/.xmobarrc"
     xmonad $ defaultConfig 
@@ -114,5 +117,5 @@ main = do
         ,  normalBorderColor = myNormalBorderColor
         ,  focusedBorderColor = myFocusedBorderColor
         ,  focusFollowsMouse = myFocusFollowsMouse
-        } `additionalKeys` myKeys 
+        } `additionalKeys` myKeys `additionalKeysP` myKeysP 
       

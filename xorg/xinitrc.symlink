@@ -1,6 +1,7 @@
 #!/bin/sh
 xrdb -merge ~/.dotfiles/xorg/solarized/solarized
-xrdb -merge ~/.dotfiles/urxvt/urxvt_conf
+xrdb -merge ~/.dotfiles/urxvt/urxvt
+xrdb -merge ~/.Xresources
 xsetroot -solid "#002b36"
 xsetroot -cursor_name left_ptr
 #exec keychain ~/.ssh/id_rsa &

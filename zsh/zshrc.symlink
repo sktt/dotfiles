@@ -31,8 +31,6 @@ ZSH_THEME="clean"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git debian nyan ruby extract)
 
-source $ZSH/oh-my-zsh.sh
-source ~/.gibo-completion.zsh
 
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
@@ -77,8 +75,12 @@ TZ='Europe/Stockholm'; export TZ
 unsetopt correct_all
 eval "$(rbenv init -)"
 PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B${PWD/#$HOME/~}/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '  
+
+source $ZSH/oh-my-zsh.sh
+source ~/.gibo-completion.zsh
+
 # Start x on login
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     exec ssh-agent startx
-    exec xinit -- /usr/bin/X -nolisten tcp vt7
+#    exec xinit -- /usr/bin/X -nolisten tcp vt7
 fi

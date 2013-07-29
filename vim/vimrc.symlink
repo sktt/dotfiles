@@ -10,24 +10,34 @@ Bundle 'ryu-blacknd/vim-nucolors'
 Bundle 'tpope/vim-pathogen'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'FredKSchott/CoVim'
+Bundle 'wincent/command-t'
+Bundle 'pangloss/vim-javascript'
+Bundle 'tpope/vim-surround'
 filetype plugin indent on
 syntax on
 
 " Better indents
-set smartindent
-set tabstop=4
-set shiftwidth=4
-set expandtab
+" Don't wrap lines
+set nowrap
+
+set ts=2 sts=2 sw=2 expandtab
 
 set backupdir=~/.vim/backup,~/.vim/tmp
 set directory=~/.vim/backup,~/.vim/tmp
 
+" + clipboard gets into the right place
+set clipboard=unnamedplus
+
+" scrolling with urxvt and vim
+set ttymouse=xterm2
+
 " colorscheme
 set background=dark
+
+
 colorscheme solarized
 " set row numbers
 set number
-set hlsearch
 
 " Leader key timeout
 set timeoutlen=400
@@ -39,5 +49,45 @@ nnoremap <Space> <Nop>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
 
+let g:CommandTMaxHeight=10
+let g:CommandTMinHeight=5
+
 " Exit insert mode mapping
 imap öö <Esc><Esc>
+
+" Macro
+"   sudo save
+command! W execute ':silent w !sudo tee % > /dev/null' | edit!
+command! Q q
+
+set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+
+" shorter messages
+set shortmess=a
+"############################################
+" Easier split navigation
+"############################################
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+
+
+

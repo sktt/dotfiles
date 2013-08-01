@@ -74,11 +74,11 @@ TZ='Europe/Stockholm'; export TZ
 # Customize to your needs...
 unsetopt correct_all
 eval "$(rbenv init -)"
-PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B${PWD/#$HOME/~}/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '  
 
 source $ZSH/oh-my-zsh.sh
 source ~/.gibo-completion.zsh
 
+PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B${PWD/#$HOME/~}/%b%{$reset_color%} $(git_prompt_info)%(!.#.$) '  
 # Start x on login
 if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
     exec ssh-agent startx

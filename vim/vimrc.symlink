@@ -26,7 +26,7 @@ set backupdir=~/.vim/backup,~/.vim/tmp
 set directory=~/.vim/backup,~/.vim/tmp
 
 " + clipboard gets into the right place
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 " scrolling with urxvt and vim
 set ttymouse=xterm2

@@ -7,14 +7,27 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ryu-blacknd/vim-nucolors'
-Bundle 'tpope/vim-pathogen'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'FredKSchott/CoVim'
 Bundle 'wincent/command-t'
 Bundle 'pangloss/vim-javascript'
-Bundle 'tpope/vim-surround'
+Bundle 'pope/vim-surround'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/syntastic'
+
 filetype plugin indent on
 syntax on
+
+" -- BUNDLE CONFIGURATIONS 
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
+let g:ycm_confirm_extra_conf = 0 " turn off confirmation
+" let g:ycm_add_preview_to_completeopt = 1 " add preview string
+let g:ycm_autoclose_preview_window_after_completion = 1 " close preview automaticly
+" let g:syntastic_always_populate_loc_list = 1
+let g:CommandTMaxHeight=10
+let g:CommandTMinHeight=5
+
 
 " Better indents
 " Don't wrap lines
@@ -27,6 +40,8 @@ set directory=~/.vim/backup,~/.vim/tmp
 
 " + clipboard gets into the right place
 " set clipboard=unnamedplus
+
+
 
 " scrolling with urxvt and vim
 set ttymouse=xterm2
@@ -48,9 +63,7 @@ let mapleader = " "
 nnoremap <Space> <Nop>
 nnoremap <Leader>h :set hlsearch!<CR>
 nnoremap <Leader>nt :NERDTreeToggle<CR>
-
-let g:CommandTMaxHeight=10
-let g:CommandTMinHeight=5
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " Exit insert mode mapping
 imap öö <Esc><Esc>

@@ -11,4 +11,6 @@ cabal-dev
 *.chs.h
 .virthualenv
 
-
+# ignore xmonad binary
+#
+xmonad-x86_64-linux

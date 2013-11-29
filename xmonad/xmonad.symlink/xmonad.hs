@@ -45,9 +45,15 @@ myScratchpads = let
   top = customFloating $ W.RationalRect 0.025 0.05 0.95 0.45
   bottom = customFloating $ W.RationalRect 0.2 0.7 0.60 0.3
   in [
-    NS "Mail" 
+    NS "Calendar" 
+       "google-chrome --app=https://calendar.google.com"
+       (appName =? "calendar.google.com") full 
+  , NS "Mail" 
        "google-chrome --app=https://mail.google.com"
        (appName =? "mail.google.com") full 
+  , NS "TopTerminal"
+       "urxvtc -name TopTerminal"
+       (appName =? "TopTerminal") top 
   , NS "BottomTerminal"
        "urxvtc -name BottomTerminal"
        (appName =? "BottomTerminal") bottom 
@@ -107,8 +113,10 @@ myKeys = myModKeys ++ myFnKeys
       let binds =
             [ (xK_p, spawn "exec dmenu-dark -b")
             , (xK_g, spawn "exec google-chrome")
+            , (xK_v, namedScratchpadAction myScratchpads "TopTerminal")
             , (xK_b, namedScratchpadAction myScratchpads "BottomTerminal")
             , (xK_m, namedScratchpadAction myScratchpads "Mail")
+            , (xK_c, namedScratchpadAction myScratchpads "Calendar")
             , (xK_Caps_Lock, sendMessage $ Toggle FULL)
             ]
       in [((myModMask, key), action) | (key, action) <- binds]

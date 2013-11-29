@@ -1,9 +1,10 @@
-Config { font = "xft:Inconsolata:size=13:antialias=true"
+Config { font = "xft:Inconsolata:size=11:antialias=true"
        , bgColor = "#002b36"
        , fgColor = "#839496"  -- "#657b83"
        , position = Top
        , lowerOnStart = True
        , commands = [ Run Network "wlan0" ["-L","0","-H","32","--normal","#859900","--high","#dc322f"] 10
+                    , Run Com "/bin/sh" ["getvolume"] "vol" 10
                     , Run Cpu ["-L","3","-H","50","--normal","#859900","--high","#dc322f"] 10
                     , Run Battery ["-t","Bat: <left>%","-L","50","-H","75","-h","#859900","-n","#b58900","-l","#dc322f"] 100
                     , Run ThermalZone 0 ["-t","Temp: <temp>C","-L","40","-H","79","-h","#dc322f","-n","#b58900","-l","#859900"] 10
@@ -13,5 +14,5 @@ Config { font = "xft:Inconsolata:size=13:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu%  %thermal0%  %memory%  %wlan0%  %battery%  %date%"
+       , template = "%StdinReader% }{ %getvolume%  %cpu%  %thermal0%  %memory%  %wlan0%  %battery%  %date%"
        }

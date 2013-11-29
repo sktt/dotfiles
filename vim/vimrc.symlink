@@ -6,15 +6,18 @@ call vundle#rc()
 
 Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
-Bundle 'ryu-blacknd/vim-nucolors'
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'FredKSchott/CoVim'
 Bundle 'wincent/command-t'
 Bundle 'pangloss/vim-javascript'
 Bundle 'pope/vim-surround'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
 Bundle 'godlygeek/tabular'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'slim-template/vim-slim'
+Bundle 'groenewege/vim-less'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'wavded/vim-stylus'
 
 filetype plugin indent on
 syntax on
@@ -29,7 +32,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1 " close preview automati
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=5
 
-
 " Better indents
 " Don't wrap lines
 set nowrap
@@ -41,12 +43,7 @@ set directory=~/.vim/backup,~/.vim/tmp
 
 " + clipboard gets into the right place
 " set clipboard=unnamedplus
-
-
-
-" scrolling with urxvt and vim
-set ttymouse=xterm2
-
+"
 " colorscheme
 set background=dark
 

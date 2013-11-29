@@ -1,5 +1,5 @@
 URxvt*buffered:                           true
-URxvt*cursorBlink:                        false
+URxvt*cursorBlink:                        true
 URxvt.intensityStyles:                    false
 URvxt*underlineColor:                     #657b83
 URxvt*cursorUnderline:                    true

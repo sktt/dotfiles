@@ -32,6 +32,13 @@ let g:ycm_autoclose_preview_window_after_completion = 1 " close preview automati
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=5
 
+if &term =~ "xterm\\|rxvt" 
+  :silent !echo -ne "\033]12;10\007"
+  let &t_SI = "\<Esc>]12;2\x7"
+  let &t_EI = "\<Esc>]12;10\x7"
+  autocmd VimLeave * :!echo -ne "\033]12;10\007" 
+endif 
+
 " Better indents
 " Don't wrap lines
 set nowrap

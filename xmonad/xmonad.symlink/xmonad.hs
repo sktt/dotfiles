@@ -13,8 +13,8 @@ import XMonad.Util.NamedScratchpad
 import System.IO
 
 
-myTerminal = "/usr/bin/urxvtc"
-myFont = "xft:inconsolata:size=10:antialias=true"
+myTerminal = "/usr/bin/urxvtc -fn \"xft:Inconsolata\\-dz for Powerline:style=dz:pixelsize=12:antialias=true\""
+myFont = "xft:inconsolata\\-dz:pixelsize=12:antialias=true"
 myModMask = mod4Mask -- Rebind Mod to the windows key
 
 myBorderWidth = 2
@@ -52,10 +52,10 @@ myScratchpads = let
        "google-chrome --app=https://mail.google.com"
        (appName =? "mail.google.com") full 
   , NS "TopTerminal"
-       "urxvtc -name TopTerminal"
+       (myTerminal ++ " -name TopTerminal")
        (appName =? "TopTerminal") top 
   , NS "BottomTerminal"
-       "urxvtc -name BottomTerminal"
+       (myTerminal ++ " -name BottomTerminal")
        (appName =? "BottomTerminal") bottom 
   ]
 ------------------------------

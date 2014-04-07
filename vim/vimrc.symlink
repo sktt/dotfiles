@@ -18,6 +18,9 @@ Bundle 'slim-template/vim-slim'
 Bundle 'groenewege/vim-less'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'wavded/vim-stylus'
+Bundle 'digitaltoad/vim-jade'
+Bundle 'mattn/emmet-vim'
+Bundle 'bling/vim-airline'
 
 filetype plugin indent on
 syntax on
@@ -26,15 +29,22 @@ syntax on
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 let g:ycm_extra_conf_globlist = ['~/.ycm_extra_conf.py']
 let g:ycm_confirm_extra_conf = 0 " turn off confirmation
+let g:ycm_add_preview_to_completeopt = 0
+set completeopt-=preview 
 " let g:ycm_add_preview_to_completeopt = 1 " add preview string
 let g:ycm_autoclose_preview_window_after_completion = 1 " close preview automaticly
 " let g:syntastic_always_populate_loc_list = 1
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=5
 
+let g:syntastic_javascript_checkers = ['jshint']
+let g:airline_powerline_fonts = 1
+
+let g:vim_markdown_folding_disabled=1
+
 if &term =~ "xterm\\|rxvt" 
   :silent !echo -ne "\033]12;10\007"
-  let &t_SI = "\<Esc>]12;2\x7"
+  let &t_SI = "\<Esc>]12;4\x7"
   let &t_EI = "\<Esc>]12;10\x7"
   autocmd VimLeave * :!echo -ne "\033]12;10\007" 
 endif 
@@ -79,6 +89,7 @@ command! W execute ':silent w !sudo tee % > /dev/null' | edit!
 command! Q q
 
 set statusline=%<%F%h%m%r%h%w%y\ %{&ff}\ %{strftime(\"%c\",getftime(expand(\"%:p\")))}%=\ lin:%l\,%L\ col:%c%V\ pos:%o\ ascii:%b\ %P
+set laststatus=2
 
 " shorter messages
 set shortmess=a
@@ -106,6 +117,28 @@ set listchars=tab:▸\ ,eol:¬
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
+" typical tabularize use cases
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
 
 
+" Tim Pope auto tabularize | bar
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+ 
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 
+" jshint
+let g:syntastic_javascript_jshint_conf="~/.jshintrc"

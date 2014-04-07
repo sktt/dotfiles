@@ -11,4 +11,5 @@ xsetroot -cursor_name left_ptr
 #xset +fp /usr/share/fonts/local && xset fp rehash
 exec urxvtd -q -f -o &
 exec ~/.dropbox-dist/dropboxd &
-exec xmonad
+#/usr/lib/notification-daemon/notification-daemon 
+exec dbus-launch --exit-with-session xmonad

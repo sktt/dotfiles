@@ -1,4 +1,4 @@
-Config { font = "xft:Inconsolata:size=11:antialias=true"
+Config { font = "xft:Inconsolata-dz:style=dz:size=9:antialias=true"
        , bgColor = "#002b36"
        , fgColor = "#839496"  -- "#657b83"
        , position = Top

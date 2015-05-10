@@ -46,10 +46,10 @@ myScratchpads = let
   bottom = customFloating $ W.RationalRect 0.2 0.7 0.60 0.3
   in [
     NS "Calendar" 
-       "google-chrome --app=https://calendar.google.com"
+       "chromium --app=https://calendar.google.com"
        (appName =? "calendar.google.com") full 
   , NS "Mail" 
-       "google-chrome --app=https://mail.google.com"
+       "chromium --app=https://mail.google.com"
        (appName =? "mail.google.com") full 
   , NS "TopTerminal"
        (myTerminal ++ " -name TopTerminal")
@@ -112,7 +112,7 @@ myKeys = myModKeys ++ myFnKeys
     myModKeys =
       let binds =
             [ (xK_p, spawn "exec dmenu-dark -b")
-            , (xK_g, spawn "exec google-chrome")
+            , (xK_g, spawn "exec chromium")
             , (xK_v, namedScratchpadAction myScratchpads "TopTerminal")
             , (xK_b, namedScratchpadAction myScratchpads "BottomTerminal")
             , (xK_m, namedScratchpadAction myScratchpads "Mail")
@@ -150,7 +150,7 @@ myPP = defaultPP
     }
   
 main = do
-    xmproc <- spawnPipe "/home/jnes/.cabal/bin/xmobar /home/jnes/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/jnes/.xmobarrc"
     xmonad $ defaultConfig 
         {  layoutHook         = myLayout
       	,  logHook            = dynamicLogWithPP myPP

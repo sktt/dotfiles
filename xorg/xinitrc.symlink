@@ -1,16 +1,16 @@
 #!/bin/sh
-xrdb -merge ~/.dotfiles/xorg/solarized/solarized
+xrdb -merge ~/.dotfiles/xorg/solarized
 xrdb -merge ~/.dotfiles/urxvt/urxvt
 xrdb -merge ~/.Xresources
 xsetroot -solid "#002b36"
 xsetroot -cursor_name left_ptr
+xset -b
 #exec keychain ~/.ssh/id_rsa &
 [ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
 [ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
 #feh --bg-scale ~/.xmonad_background.jpg &
 #xset +fp /usr/share/fonts/local && xset fp rehash
 exec urxvtd -q -f -o &
-exec ~/.dropbox-dist/dropboxd &
+#exec ~/.dropbox-dist/dropboxd &
 #/usr/lib/notification-daemon/notification-daemon 
-exec xinput --set-prop 12 260 5 &
 exec dbus-launch --exit-with-session xmonad

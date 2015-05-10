@@ -18,7 +18,7 @@ URxvt*saveLines:          5000
 ! URxvt*termName:           rxvt-256color
 URxvt.perl-lib:           /home/jnes/.dotfiles/urxvt/perls
 URxvt.perl-ext-common:    default,matcher,clipboard,keyboard-select,font-size
-URxvt.urlLauncher:        google-chrome
+URxvt.urlLauncher:        chromium
 URxvt.matcher.button:     1
 URxvt*fading:             10
 URxvt.keysym.M-Escape:    perl:keyboard-select:activate

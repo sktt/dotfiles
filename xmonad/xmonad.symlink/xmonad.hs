@@ -16,6 +16,7 @@ import System.IO
 myTerminal = "/usr/bin/urxvtc -fn \"xft:Inconsolata\\-dz for Powerline:style=dz:pixelsize=12:antialias=true\""
 myFont = "xft:inconsolata\\-dz:pixelsize=12:antialias=true"
 myModMask = mod4Mask -- Rebind Mod to the windows key
+myBrowser = "/usr/bin/chromium"
 
 myBorderWidth = 2
 
@@ -46,11 +47,14 @@ myScratchpads = let
   bottom = customFloating $ W.RationalRect 0.2 0.7 0.60 0.3
   in [
     NS "Calendar" 
-       "chromium --app=https://calendar.google.com"
+       (myBrowser ++ " --app=https://calendar.google.com")
        (appName =? "calendar.google.com") full 
   , NS "Mail" 
-       "chromium --app=https://mail.google.com"
+       (myBrowser ++ " --app=https://mail.google.com")
        (appName =? "mail.google.com") full 
+  , NS "Slack" 
+       (myBrowser ++ " --app=https://zenmate.slack.com")
+       (appName =? "zenmate.slack.com") full 
   , NS "TopTerminal"
        (myTerminal ++ " -name TopTerminal")
        (appName =? "TopTerminal") top 
@@ -112,11 +116,12 @@ myKeys = myModKeys ++ myFnKeys
     myModKeys =
       let binds =
             [ (xK_p, spawn "exec dmenu-dark -b")
-            , (xK_g, spawn "exec chromium")
+            , (xK_g, spawn ("exec " ++ myBrowser))
             , (xK_v, namedScratchpadAction myScratchpads "TopTerminal")
             , (xK_b, namedScratchpadAction myScratchpads "BottomTerminal")
             , (xK_m, namedScratchpadAction myScratchpads "Mail")
             , (xK_c, namedScratchpadAction myScratchpads "Calendar")
+            , (xK_s, namedScratchpadAction myScratchpads "Slack")
             , (xK_Caps_Lock, sendMessage $ Toggle FULL)
             ]
       in [((myModMask, key), action) | (key, action) <- binds]
@@ -127,6 +132,10 @@ myKeys = myModKeys ++ myFnKeys
       , ((0 , 0x1008ff11), spawn "amixer -q set Master 10%- unmute && amixer -q set Headphone unmute && amixer -q set Speaker unmute")
       -- XF86AudioRaiseVolume
       , ((0 , 0x1008ff13), spawn "amixer -q set Master 10%+ unmute && amixer -q set Headphone unmute && amixer -q set Speaker unmute")
+      -- XF86MonBrightnessDown
+      , ((0 , 0x1008ff03), spawn "xbacklight -dec 10%")
+      -- XF86MonBrightnessUp
+      , ((0 , 0x1008ff02), spawn "xbacklight -inc 10%")
       ]
 
 myManageHook = manageDocks 

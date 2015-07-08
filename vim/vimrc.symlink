@@ -47,7 +47,7 @@ let g:ycm_autoclose_preview_window_after_completion = 1 " close preview automati
 let g:CommandTMaxHeight=10
 let g:CommandTMinHeight=5
 
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:airline_powerline_fonts = 1
 
 let g:vim_markdown_folding_disabled=1
@@ -87,7 +87,7 @@ set ttimeoutlen=400
 let mapleader = " "
 nnoremap <Space> <Nop>
 nnoremap <Leader>h :set hlsearch!<CR>
-nnoremap <Leader>nt :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 
 " Exit insert mode mapping
